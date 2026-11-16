@@ -2287,10 +2287,131 @@ function review(id) {
     );
   };
 }
+/* ==========================================
+   REDEFINIÇÃO DE SENHA
+   ========================================== */
 
+function redefinirSenhaScreen(token) {
+  app.innerHTML = `
+    <main class="login lc-auth-page">
+      <section class="auth lc-auth-card">
+
+        <div class="lc-brand">
+          <div class="logo">
+            LAUNCH<span>CONTROL</span>
+          </div>
+          <span class="lc-brand-caption">
+            RECUPERAÇÃO DE ACESSO
+          </span>
+        </div>
+
+        <div class="lc-auth-heading">
+          <span class="lc-eyebrow">SEGURANÇA DA CONTA</span>
+          <h1>Criar nova senha</h1>
+          <p>Informe sua nova senha para recuperar o acesso.</p>
+        </div>
+
+        <div id="reset-message" role="status" aria-live="polite"></div>
+
+        <form id="reset-form" class="lc-auth-form">
+          <label class="field">
+            Nova senha
+            <input
+              type="password"
+              name="novaSenha"
+              minlength="8"
+              required
+              autocomplete="new-password"
+              placeholder="Mínimo de 8 caracteres"
+            >
+          </label>
+
+          <label class="field">
+            Confirmar nova senha
+            <input
+              type="password"
+              name="confirmarSenha"
+              minlength="8"
+              required
+              autocomplete="new-password"
+              placeholder="Digite novamente sua senha"
+            >
+          </label>
+
+          <button type="submit" class="btn lc-submit">
+            Redefinir senha
+          </button>
+        </form>
+
+        <div class="lc-auth-footer">
+          <button type="button" class="link" id="back-login">
+            Voltar para o login
+          </button>
+        </div>
+
+      </section>
+    </main>
+  `;
+
+  document.querySelector("#back-login").onclick = () => {
+    window.history.replaceState({}, "", window.location.pathname);
+    loginScreen();
+  };
+
+  document.querySelector("#reset-form").onsubmit = async event => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const button = form.querySelector('button[type="submit"]');
+    const values = Object.fromEntries(new FormData(form));
+    const message = document.querySelector("#reset-message");
+
+    if (values.novaSenha !== values.confirmarSenha) {
+      message.innerHTML = `
+        <div class="notice error">
+          As senhas informadas não coincidem.
+        </div>
+      `;
+      return;
+    }
+
+    button.disabled = true;
+
+    try {
+      await api("/public/redefinir-senha", "POST", {
+        token,
+        novaSenha: values.novaSenha
+      });
+
+      window.history.replaceState({}, "", window.location.pathname);
+
+      loginScreen();
+
+      document.querySelector("#authmsg").innerHTML = `
+        <div class="notice ok">
+          Senha redefinida com sucesso! Faça seu login.
+        </div>
+      `;
+
+    } catch (error) {
+      message.innerHTML = `
+        <div class="notice error">
+          ${esc(error.message)}
+        </div>
+      `;
+      button.disabled = false;
+    }
+  };
+}
 /* ==========================================
    INICIALIZAÇÃO
    ========================================== */
 
-// Inicializa a aplicação na tela de autenticação.
-loginScreen();
+const parametros = new URLSearchParams(window.location.search);
+const tokenRecuperacao = parametros.get("recuperarToken");
+
+if (tokenRecuperacao) {
+  redefinirSenhaScreen(tokenRecuperacao);
+} else {
+  loginScreen();
+}

@@ -78,6 +78,7 @@ class SecurityConfig {
                     "/qrcode.js",
                     "/app.js",
                     "/home.js",
+                    "/imagemequipe.jpg",
                     "/api/public/**",
                     "/error"
                 ).permitAll()

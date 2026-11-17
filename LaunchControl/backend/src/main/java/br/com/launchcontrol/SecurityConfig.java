@@ -94,7 +94,12 @@ class SecurityConfig {
             // Utiliza autenticação HTTP Basic.
             // O navegador ou frontend envia as credenciais
             // no cabeçalho Authorization das requisições.
-            .httpBasic(Customizer.withDefaults())
+            
+            .httpBasic(basic -> basic.authenticationEntryPoint(
+                (request, response, authException) -> {
+                response.sendError(401, "Não autorizado");
+                }
+                ))
 
             // Finaliza a configuração e cria a cadeia de filtros de segurança.
             .build();

@@ -1,4 +1,3 @@
-
 /*
  * LAUNCHCONTROL — HOME PÚBLICA
  * Página de apresentação da plataforma.
@@ -18,6 +17,7 @@ function homeScreen() {
             <a href="#funcionalidades">Funcionalidades</a>
             <a href="#solucoes">Soluções</a>
             <a href="#como-funciona">Como funciona</a>
+            <a href="#sobre-nos">Sobre nós</a>
           </div>
 
           <div class="home-nav-actions">
@@ -272,6 +272,44 @@ function homeScreen() {
           </div>
         </section>
 
+        <!-- SOBRE NÓS: história e fotografia original da equipe -->
+        <section class="home-section home-about" id="sobre-nos" aria-labelledby="about-heading">
+          <div class="home-container">
+            <div class="home-about-layout">
+              <div class="home-about-intro">
+                <span class="home-kicker">NOSSA HISTÓRIA</span>
+                <h2 id="about-heading">Oito pessoas. Uma ideia. <span>Um novo caminho para o setor automotivo.</span></h2>
+                <p class="home-about-lead">O LaunchControl nasceu de uma ideia construída em equipe: tornar a experiência automotiva mais conectada, clara e organizada.</p>
+              </div>
+              <div class="home-about-story">
+                <p>Nossa história começou em 2026, no Centro Universitário UNICEPLAC, quando oito estudantes se uniram para transformar desafios reais do setor automotivo em uma proposta tecnológica.</p>
+                <p>Percebemos que solicitar serviços, consultar orçamentos, encontrar peças e acompanhar atendimentos poderia ser mais simples. Foi dessa vontade de aproximar clientes, oficinas e fornecedores que surgiu o <strong>LaunchControl</strong>.</p>
+                <p>Mais do que um projeto acadêmico, o LaunchControl representa colaboração, aprendizado e a determinação de transformar uma ideia compartilhada em uma plataforma útil para as pessoas.</p>
+              </div>
+            </div>
+            <div class="home-team" id="nossa-equipe">
+              <div class="home-team-heading">
+                <div><span class="home-kicker">QUEM FAZ ACONTECER</span><h3>Nossa equipe</h3></div>
+                <p>Por trás de cada linha de código, existem pessoas, dedicação e uma visão em comum.</p>
+              </div>
+              <figure class="home-team-photo">
+                <img src="./imagemequipe.jpg" alt="Fotografia original dos oito integrantes do projeto LaunchControl, reunidos em sala de aula" loading="lazy" decoding="async">
+                <figcaption>Equipe LaunchControl · 2026</figcaption>
+              </figure>
+              <div class="home-team-grid" aria-label="Integrantes do projeto em ordem alfabética">
+                <div class="home-team-member">Ana Letícia Souza Pimentel</div>
+                <div class="home-team-member">Gabriel de Souza Teodoro</div>
+                <div class="home-team-member">Guilherme Abreu Bonfim</div>
+                <div class="home-team-member">João Victtor Vieira Silva</div>
+                <div class="home-team-member">Lucas Moreira Rodrigues Ribeiro</div>
+                <div class="home-team-member">Luís Paulo Mendes Barbosa</div>
+                <div class="home-team-member">Miguel Luiz Silverio</div>
+                <div class="home-team-member">Murilo Ferreira Macedo</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section class="home-section home-cta-section">
           <div class="home-container">
             <div class="home-cta">
@@ -298,35 +336,31 @@ function homeScreen() {
         </section>
       </main>
 
-      <footer class="home-footer">
-        <div class="home-container home-footer-inner">
-          <div>
-            <a class="home-logo" href="#inicio">
-              LAUNCH<span>CONTROL</span>
-            </a>
-            <p>
-              Gestão automotiva em um só lugar.
-            </p>
+      <footer class="home-footer" id="mapa-do-site">
+        <div class="home-container">
+          <div class="home-footer-top">
+            <div class="home-footer-brand">
+              <a class="home-logo" href="#inicio">LAUNCH<span>CONTROL</span></a>
+              <p>Conectando pessoas. Simplificando caminhos. Movendo o futuro.</p>
+            </div>
+            <nav class="home-sitemap" aria-label="Mapa do Site">
+              <div class="home-sitemap-column"><h3>Plataforma</h3><a href="#inicio">Início</a><a href="#funcionalidades">Funcionalidades</a><a href="#solucoes">Soluções</a><a href="#como-funciona">Como funciona</a></div>
+              <div class="home-sitemap-column"><h3>Institucional</h3><a href="#sobre-nos">Sobre nós</a><a href="#nossa-equipe">Nossa equipe</a><a href="#mapa-do-site">Mapa do Site</a></div>
+              <div class="home-sitemap-column"><h3>Acesso</h3><button type="button" data-home-login>Entrar</button><button type="button" data-home-register>Criar conta</button></div>
+            </nav>
           </div>
-
-          <p>
-            © ${new Date().getFullYear()} LaunchControl.
-            Todos os direitos reservados.
-          </p>
+          <div class="home-footer-bottom"><span>© ${new Date().getFullYear()} LaunchControl. Todos os direitos reservados.</span><a href="#inicio">Voltar ao topo ↑</a></div>
         </div>
       </footer>
     </div>
   `;
 
-  document.querySelector("#home-login").onclick =
-    () => loginScreen(false);
+  // Todos os botões públicos usam as telas de autenticação já existentes.
+  app.querySelectorAll("#home-login, [data-home-login]").forEach(button => {
+    button.addEventListener("click", () => loginScreen(false));
+  });
 
-  document.querySelector("#home-register").onclick =
-    () => loginScreen(true);
-
-  document.querySelectorAll(
-    "[data-home-register]"
-  ).forEach(button => {
-    button.onclick = () => loginScreen(true);
+  app.querySelectorAll("#home-register, [data-home-register]").forEach(button => {
+    button.addEventListener("click", () => loginScreen(true));
   });
 }

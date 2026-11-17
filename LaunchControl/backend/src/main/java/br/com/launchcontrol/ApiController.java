@@ -66,12 +66,23 @@ class ApiController {
         this.recuperacaoSenhaService = recuperacaoSenhaService;
     }
 
+    
     record Cadastro(
         @NotBlank String nome,
         @Email @NotBlank String email,
-        @NotBlank @Size(min = 6) String senha,
+
+        @NotBlank
+            @Size(min = 8, message = "A senha deve ter no mínimo 8 caracteres.")
+        @Pattern(
+        regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z0-9\\s]).{8,}$",
+        message = "A senha deve conter letra maiúscula, minúscula, número e caractere especial."
+    )
+        String senha,
+
         @NotNull Perfil perfil,
         String telefone
+) {}
+
     ) {}
 
     record VeiculoIn(

@@ -1356,3 +1356,64 @@ td button {
 .lc-home section[id] {
     scroll-margin-top: 100px;
 }
+
+
+/* HOME — NAVEGAÇÃO MOBILE */
+
+.lc-home .home-mobile-menu-btn {
+    display: none;
+    border: 1px solid rgba(255,255,255,.2);
+    background: #1b222d;
+    color: #fff;
+    border-radius: 9px;
+    padding: 9px 12px;
+    font-size: 20px;
+}
+
+.lc-home .home-mobile-menu[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 950px) {
+    .lc-home .home-mobile-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .lc-home .home-mobile-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 14px 22px 22px;
+        background: #111720;
+        border-top: 1px solid rgba(255,255,255,.1);
+        max-height: 75vh;
+        overflow-y: auto;
+    }
+
+    .lc-home .home-mobile-menu a,
+    .lc-home .home-mobile-menu button {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 13px 14px;
+        border-radius: 9px;
+        border: none;
+        background: transparent;
+        color: #f8fafc;
+        font-size: 14px;
+        text-decoration: none;
+    }
+
+    .lc-home .home-mobile-menu a:hover,
+    .lc-home .home-mobile-menu button:hover {
+        background: rgba(255,121,31,.15);
+        color: #ff994b;
+    }
+
+    .lc-home .home-nav {
+        flex-wrap: wrap;
+    }
+}
+

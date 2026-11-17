@@ -2407,6 +2407,7 @@ function redefinirSenhaScreen(token) {
    INICIALIZAÇÃO
    ========================================== */
 
+
 const parametros = new URLSearchParams(window.location.search);
 const tokenRecuperacao = parametros.get("recuperarToken");
 

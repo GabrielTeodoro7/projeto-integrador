@@ -1417,3 +1417,185 @@ td button {
     }
 }
 
+
+/* ==========================================
+   LAUNCHCONTROL - CORREÇÃO RESPONSIVA
+   FOTO, EQUIPE, RODAPÉ E NAVEGAÇÃO
+   ========================================== */
+
+/* Impede que o conteúdo ultrapasse a tela */
+.lc-home {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+.lc-home .home-container {
+    width: min(1180px, calc(100% - 40px));
+    max-width: 100%;
+    margin-inline: auto;
+}
+
+/* Fotografia original sem cortes */
+.lc-home .home-team-photo-wrap {
+    width: 100%;
+    max-width: 100%;
+    margin: 30px auto;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 20px;
+    background: #171c25;
+}
+
+.lc-home .home-team-photo-wrap img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Nomes da equipe */
+.lc-home .home-team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.lc-home .home-team-member {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+/* Mapa do Site */
+.lc-home .home-sitemap {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    gap: 35px;
+    align-items: start;
+    padding: 25px 0 45px;
+}
+
+.lc-home .home-sitemap > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    min-width: 0;
+}
+
+.lc-home .home-sitemap h3 {
+    margin: 0 0 6px;
+    font-size: 15px;
+    color: #fff;
+}
+
+.lc-home .home-sitemap a,
+.lc-home .home-sitemap button {
+    display: inline-block;
+    width: auto;
+    max-width: 100%;
+    min-height: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #b5bfcd;
+    font: inherit;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.lc-home .home-sitemap a:hover,
+.lc-home .home-sitemap button:hover {
+    color: #ff791f;
+}
+
+.lc-home .home-sitemap .home-logo {
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.3;
+}
+
+.lc-home .home-sitemap .home-logo span {
+    color: #ff791f;
+}
+
+.lc-home .home-sitemap p {
+    margin: 0;
+    color: #9ca8b9;
+    line-height: 1.7;
+}
+
+.lc-home .home-footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* Tablets */
+@media (max-width: 950px) {
+    .lc-home .home-team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .lc-home .home-sitemap {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 32px;
+    }
+}
+
+/* Celulares */
+@media (max-width: 600px) {
+    .lc-home .home-container {
+        width: calc(100% - 28px);
+    }
+
+    .lc-home .home-team-photo-wrap {
+        margin: 20px auto;
+        border-radius: 12px;
+    }
+
+    .lc-home .home-team-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .lc-home .home-team-member {
+        padding: 15px;
+        min-height: 56px;
+    }
+
+    .lc-home .home-sitemap {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 18px;
+        row-gap: 32px;
+        padding: 20px 0 35px;
+    }
+
+    .lc-home .home-sitemap > div:first-child {
+        grid-column: 1 / -1;
+    }
+
+    .lc-home .home-sitemap h3 {
+        font-size: 14px;
+    }
+
+    .lc-home .home-sitemap a,
+    .lc-home .home-sitemap button {
+        font-size: 12px;
+        overflow-wrap: anywhere;
+    }
+
+    .lc-home .home-footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}

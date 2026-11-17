@@ -77,6 +77,7 @@ class SecurityConfig {
                     "/script.js",
                     "/qrcode.js",
                     "/app.js",
+                    "/home.js",
                     "/api/public/**",
                     "/error"
                 ).permitAll()

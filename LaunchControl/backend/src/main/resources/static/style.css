@@ -1334,3 +1334,25 @@ td button {
 .lc-home .home-footer-bottom a:hover { color:var(--home-orange); }
 @media(max-width:900px) { .lc-home .home-about-layout {grid-template-columns:1fr;gap:20px;} .lc-home .home-team-grid {grid-template-columns:repeat(2,minmax(0,1fr));} .lc-home .home-footer-top {grid-template-columns:1fr;} }
 @media(max-width:600px) { .lc-home .home-team-heading {align-items:start;flex-direction:column;} .lc-home .home-team-grid {grid-template-columns:1fr;} .lc-home .home-team-member {min-height:58px;} .lc-home .home-sitemap {grid-template-columns:repeat(2,minmax(0,1fr));row-gap:30px;} .lc-home .home-about-story {padding-left:18px;} .lc-home .home-nav {gap:7px;} .lc-home .home-logo {font-size:clamp(12px,3.6vw,16px);} .lc-home .home-nav-actions {gap:5px;} .lc-home .home-nav-actions .home-btn {display:inline-flex;padding:9px 8px;font-size:clamp(10px,2.7vw,12px);min-height:38px;white-space:nowrap;} }
+
+
+/* HOME — CABEÇALHO FIXO */
+
+.lc-home .home-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background: rgba(10, 13, 19, 0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lc-home {
+    overflow: clip;
+}
+
+.lc-home section[id] {
+    scroll-margin-top: 100px;
+}

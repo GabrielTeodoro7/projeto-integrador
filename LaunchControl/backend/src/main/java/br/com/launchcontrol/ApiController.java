@@ -83,8 +83,6 @@ class ApiController {
         String telefone
 ) {}
 
-    ) {}
-
     record VeiculoIn(
         @NotBlank String modelo,
         @NotNull @Min(1950) @Max(2100) Integer ano,

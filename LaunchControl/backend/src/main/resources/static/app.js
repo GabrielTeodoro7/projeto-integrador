@@ -316,6 +316,42 @@ function loginScreen(register = false) {
   const password = document.querySelector("#auth-password");
   const showPassword = document.querySelector("#show-password");
 
+  
+if (register) {
+  const requisitos = document.createElement("div");
+  requisitos.className = "password-requirements";
+
+  password.closest(".field").appendChild(requisitos);
+
+  function validarSenha() {
+    const senha = password.value;
+
+    const regras = [
+      ["Mínimo de 8 caracteres", senha.length >= 8],
+      ["Uma letra maiúscula", /[A-Z]/.test(senha)],
+      ["Uma letra minúscula", /[a-z]/.test(senha)],
+      ["Um número", /[0-9]/.test(senha)],
+      ["Um caractere especial", /[^a-zA-Z0-9\s]/.test(senha)]
+    ];
+
+    requisitos.innerHTML = regras.map(([texto, valido]) => `
+      <div style="color: ${valido ? "#16a34a" : "#dc2626"}; margin-top: 5px;">
+        ${valido ? "✓" : "✗"} ${texto}
+      </div>
+    `).join("");
+
+    password.setCustomValidity(
+      regras.every(([, valido]) => valido)
+        ? ""
+        : "A senha ainda não atende a todos os requisitos."
+    );
+  }
+
+  password.addEventListener("input", validarSenha);
+  validarSenha();
+}
+
+
   showPassword.onclick = () => {
     const visible = password.type === "password";
 

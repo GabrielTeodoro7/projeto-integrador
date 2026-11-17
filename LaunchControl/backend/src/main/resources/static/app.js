@@ -380,7 +380,7 @@ function loginScreen(register = false) {
 
       document.querySelector("#authmsg").innerHTML = `
         <div class="notice error">
-          ${esc(error.message)}
+          ${esc(!register && error.message === "Erro HTTP 401" ? "E-mail ou senha incorretos" : error.message)}
         </div>
       `;
 

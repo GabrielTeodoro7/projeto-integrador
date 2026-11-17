@@ -2413,5 +2413,5 @@ const tokenRecuperacao = parametros.get("recuperarToken");
 if (tokenRecuperacao) {
   redefinirSenhaScreen(tokenRecuperacao);
 } else {
-  loginScreen();
+  homeScreen();
 }

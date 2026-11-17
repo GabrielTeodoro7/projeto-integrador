@@ -1,5 +1,3 @@
-
-
 /**
 
   A aplicação utiliza JavaScript para renderizar as telas e consumir a API

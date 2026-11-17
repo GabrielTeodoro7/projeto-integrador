@@ -1249,8 +1249,8 @@ td button {
   }
 
   .home-nav-actions .home-btn-ghost {
-    display: none;
-  }
+  display: inline-flex;
+}
 
   .home-nav-actions .home-btn {
     padding: 10px 13px;

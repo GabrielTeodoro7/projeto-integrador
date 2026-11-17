@@ -2359,6 +2359,13 @@ function redefinirSenhaScreen(token) {
               placeholder="Mínimo de 8 caracteres"
             >
           </label>
+<div id="reset-requisitos" style="font-size:12px; line-height:1.8; margin-bottom:12px;">
+  <div id="req-tamanho">✗ Mínimo de 8 caracteres</div>
+  <div id="req-maiuscula">✗ Uma letra maiúscula</div>
+  <div id="req-minuscula">✗ Uma letra minúscula</div>
+  <div id="req-numero">✗ Um número</div>
+  <div id="req-especial">✗ Um caractere especial</div>
+</div>
 
           <label class="field">
             Confirmar nova senha
@@ -2386,6 +2393,41 @@ function redefinirSenhaScreen(token) {
       </section>
     </main>
   `;
+
+  const novaSenha = document.querySelector(
+    '#reset-form input[name="novaSenha"]'
+  );
+
+  const regrasSenha = [
+    ["req-tamanho", senha => senha.length >= 8],
+    ["req-maiuscula", senha => /[A-Z]/.test(senha)],
+    ["req-minuscula", senha => /[a-z]/.test(senha)],
+    ["req-numero", senha => /[0-9]/.test(senha)],
+    ["req-especial", senha => /[^a-zA-Z0-9\s]/.test(senha)]
+  ];
+
+  function atualizarRequisitos() {
+    const senha = novaSenha.value;
+
+    regrasSenha.forEach(([id, validar]) => {
+      const elemento = document.getElementById(id);
+      const valido = validar(senha);
+
+      elemento.style.color = valido ? "#22c55e" : "#ef4444";
+      elemento.textContent =
+        (valido ? "✓ " : "✗ ") +
+        elemento.textContent.replace(/^[✓✗]\s*/, "");
+    });
+
+    novaSenha.setCustomValidity(
+      regrasSenha.every(([, validar]) => validar(senha))
+        ? ""
+        : "A senha ainda não atende a todos os requisitos."
+    );
+  }
+
+  novaSenha.addEventListener("input", atualizarRequisitos);
+  atualizarRequisitos();
 
   document.querySelector("#back-login").onclick = () => {
     window.history.replaceState({}, "", window.location.pathname);
